@@ -7,6 +7,7 @@ class TestData {
 
   getdata() async {
     var respo = await crud.postData(AppLink.product, {});
+    print(respo);
     return respo.fold((l) => l, (r) => r);
   }
 
