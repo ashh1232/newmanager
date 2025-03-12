@@ -6,7 +6,7 @@ import 'package:newmanager/screen/cart_screen.dart';
 import 'package:newmanager/screen/home_screen.dart';
 import 'package:newmanager/screen/message_view.dart';
 import 'package:newmanager/screen/salon_screen.dart';
-import 'package:newmanager/screen/shada_screen.dart';
+// import 'package:newmanager/screen/shada_screen.dart';
 import 'screen/discover_screen.dart';
 import 'screen/myhome_screen.dart';
 import 'screen/profile_screen.dart';
