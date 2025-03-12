@@ -4,7 +4,7 @@ import 'package:newmanager/screen/add_screen.dart';
 import 'package:newmanager/screen/cart_screen.dart';
 // import 'package:manneger/screen/detail.dart';
 import 'package:newmanager/screen/home_screen.dart';
-import 'package:newmanager/screen/message_view.dart';
+// import 'package:newmanager/screen/message_view.dart';
 import 'package:newmanager/screen/salon_screen.dart';
 // import 'package:newmanager/screen/shada_screen.dart';
 import 'screen/discover_screen.dart';
