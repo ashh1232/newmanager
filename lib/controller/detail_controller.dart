@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:newmanager/class/handlingdatacontroll.dart';
 import 'package:newmanager/class/statusrequest.dart';
+import 'package:newmanager/controller/testcontroller.dart';
 import 'package:newmanager/data/remote/update_remote.dart';
 
 class DetailController extends GetxController {
@@ -14,6 +15,7 @@ class DetailController extends GetxController {
   late TextEditingController imageController;
   final String id = '1';
   late String data;
+  TestControsller testControsller = Get.find();
   void resetH() {
     h = false;
   }
@@ -50,13 +52,14 @@ class DetailController extends GetxController {
           imageController.text,
         );
         statusRequest = handlingData(respo);
-        print(respo);
+        testControsller.getData();
         Get.snackbar('done', 'update');
         nameController.text = '';
         priceController.text = '';
         imageController.text = '';
 
         // print(respo['status']);
+        Get.offAndToNamed('/');
       } catch (e) {
         Get.snackbar('image', '$e');
       }

@@ -7,19 +7,19 @@ class ProductRemote {
 
   updateDate(String id, String name, String price, String image) async {
     var respo = await crud.postData(AppLink.update, {
-      'product_id': id,
-      'product_name': name,
-      'product_price': price,
-      'product_image': image,
+      'id': id,
+      'name': name,
+      'price': price,
+      'image': image,
     });
     return respo.fold((l) => l, (r) => r);
   }
 
   addData(String name, String price, String image) async {
     var respo = await crud.postData(AppLink.addpro, {
-      'product_name': name,
-      'product_price': price,
-      'product_image': image,
+      'name': name,
+      'price': price,
+      'image': image,
     });
     return respo.fold((l) => l, (r) => r);
   }

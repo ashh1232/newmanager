@@ -45,21 +45,39 @@ class AddScreen extends StatelessWidget {
             ),
             SizedBox(
               height: 50,
-              width: 100,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 200,
-                itemBuilder:
-                    (context, index) => Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.amber,
-                        ),
-                        child: Center(child: Text('aasdfasd')),
-                      ),
+
+              child: GetBuilder<AddController>(
+                builder:
+                    (s) => ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: controsller.testControsller.cat.length,
+                      itemBuilder:
+                          (context, index) => Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: () {
+                                controsller.selCattt(index);
+                              },
+                              child: Container(
+                                width: 100,
+                                decoration: BoxDecoration(
+                                  border: Border(bottom: BorderSide()),
+                                  borderRadius: BorderRadius.circular(15),
+                                  color:
+                                      controsller.curent == index
+                                          ? Colors.amber
+                                          : const Color.fromARGB(28, 0, 0, 0),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    controsller
+                                        .testControsller
+                                        .cat[index]['categories_name'],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                     ),
               ),
             ),
