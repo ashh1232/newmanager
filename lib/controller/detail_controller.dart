@@ -50,6 +50,7 @@ class DetailController extends GetxController {
           imageController.text,
         );
         statusRequest = handlingData(respo);
+        print(respo);
         Get.snackbar('done', 'update');
         nameController.text = '';
         priceController.text = '';
