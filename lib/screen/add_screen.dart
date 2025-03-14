@@ -36,13 +36,7 @@ class AddScreen extends StatelessWidget {
             SizedBox(height: 30),
 
             SizedBox(height: 30),
-            ElevatedButton(
-              onPressed: () {
-                controsller.addNewData();
-              },
 
-              child: Text('add'),
-            ),
             SizedBox(
               height: 50,
 
@@ -80,6 +74,13 @@ class AddScreen extends StatelessWidget {
                           ),
                     ),
               ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                controsller.addNewData();
+              },
+
+              child: Text('add'),
             ),
           ],
         ),

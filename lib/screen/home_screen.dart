@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:newmanager/class/handlingdataview.dart';
 import 'package:newmanager/controller/testcontroller.dart';
 import 'package:newmanager/screen/detail.dart';
+import 'package:newmanager/widget/cat_list.dart';
 import '../widget/card_home_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -21,50 +22,35 @@ class HomeScreen extends StatelessWidget {
                   child: ListView.builder(
                     //main category list
                     scrollDirection: Axis.horizontal,
-                    itemCount: controller.mcat.length,
-                    itemBuilder:
-                        (x, s) => InkWell(
-                          onTap: () {
+                    itemCount: controller.mcat.length + 1,
+                    itemBuilder: (x, s) {
+                      if (s == 0) {
+                        return CatList(
+                          testControsller: testControsller,
+                          b: s,
+                          title: 'الكل',
+                          color: controller.currentMainSel == s,
+                          fanc: () {
+                            controller.mCatSel(0, s);
+                          },
+                        );
+                      } else {
+                        return CatList(
+                          testControsller: testControsller,
+                          b: s,
+                          title: controller.mcat[s - 1]['m_cat_name'],
+                          color: controller.currentMainSel == s,
+                          fanc: () {
                             controller.mCatSel(
-                              controller.mcat[s]['categories_id'],
-                              controller.mcat[s]['m_cat_id'],
+                              controller.mcat[s - 1]['m_cat_id'],
+                              s,
                             );
                           },
-                          child: Container(
-                            width: 120,
-                            height: 40,
-                            // margin: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.grey.shade500),
-                              gradient: LinearGradient(
-                                colors: [
-                                  Colors.white,
-                                  controller.mcat[s]['is_on'] == '1'
-                                      ? Colors.black87
-                                      : Colors.grey,
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter,
-                              ),
-                            ),
-                            child: Text(
-                              controller.mcat[s]['m_cat_name'],
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 25,
-                                color:
-                                    controller.mcat[s]['is_on'] == '1'
-                                        ? Colors.white70
-                                        : Colors.black,
-                              ),
-                            ),
-                          ),
-                        ),
+                        );
+                      }
+                    },
                   ),
                 ),
-                // ),
-                // ),
                 SizedBox(
                   height: context.height - 240,
                   child: Row(
@@ -154,40 +140,18 @@ class HomeScreen extends StatelessWidget {
                           //category list
                           itemCount: testControsller.scat.length,
                           itemBuilder:
-                              (d, b) => InkWell(
-                                onTap: () {
-                                  controller.sCatSel(
+                              (d, b) => CatList(
+                                testControsller: testControsller,
+                                b: b,
+                                title:
+                                    testControsller.scat[b]['categories_name'],
+                                color: testControsller.currentsCat == b,
+                                fanc: () {
+                                  testControsller.sCatSel(
                                     testControsller.scat[b]['categories_id'],
+                                    b,
                                   );
                                 },
-                                child: Container(
-                                  width: 120,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: Colors.grey.shade500,
-                                    ),
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Colors.grey.shade100,
-                                        controller.scat[b]['is_on'] == '3'
-                                            ? Colors.grey.shade300
-                                            : Colors.black45,
-                                      ],
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                    ),
-                                  ),
-
-                                  child: Text(
-                                    testControsller.scat[b]['categories_name'],
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                    ),
-                                  ),
-                                ),
                               ),
                         ),
                       ),

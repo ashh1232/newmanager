@@ -13,32 +13,31 @@ class TestControsller extends GetxController {
   List proCat = [];
   List mcat = [];
   List scat = [];
+  int currentMainSel = 0;
+  int currentsCat = 0;
   late StatusRequest statusRequest;
 
-  void mCatSel(int cId, int id) {
-    for (int j = 0; j < mcat.length; j++) {
-      if (mcat[j]['m_cat_id'] == id) {
-        mcat[j]['is_on'] = '1';
-      } else {
-        mcat[j]['is_on'] = '0';
-      }
-    }
+  void mCatSel(int id, index) {
+    currentMainSel = index;
     scat = [];
-    scat.addAll(cat.where((test) => test['m_cat_id'] == id));
-
+    proCat = [];
+    if (index == 0) {
+      scat.addAll(cat);
+      proCat.addAll(data);
+    } else {
+      scat.addAll(cat.where((test) => test['m_cat_id'] == id));
+      scat.forEach(
+        (e) => proCat.addAll(
+          data.where((tes) => (tes['categories_id'] == e['categories_id'])),
+        ),
+      );
+    }
     update();
   }
 
-  void sCatSel(int id) {
-    for (int j = 0; j < scat.length; j++) {
-      if (scat[j]['categories_id'] == id) {
-        scat[j]['is_on'] = '3';
-      } else {
-        scat[j]['is_on'] = '4';
-      }
-    }
+  void sCatSel(int id, int index) {
+    currentsCat = index;
     proCat = [];
-    // proCat = data;
     proCat.addAll(data.where((tes) => (tes['categories_id'] == id)));
     update();
   }
